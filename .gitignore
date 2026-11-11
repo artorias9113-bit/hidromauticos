@@ -1,0 +1,13 @@
+# Entornos y credenciales
+.env
+*.log
+
+# Editores y SO
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Archivos temporales de servidor
+*.tmp

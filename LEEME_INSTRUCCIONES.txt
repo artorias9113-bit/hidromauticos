@@ -1,0 +1,93 @@
+==============================================================================
+SISTEMA DE INFORMACIÓN PARA EL CONTROL DE INVENTARIO Y GESTIÓN COMERCIAL
+EMPRESA: Hidromáticos y Repuestos Alexis Navas 2016 C.A. (RIF: J-40797625-7)
+ASIGNATURA: Algoritmo y Programación II
+==============================================================================
+
+¡Hola, compañero! Este paquete contiene todo el código fuente del proyecto y el
+script completo de la base de datos MySQL para que lo puedas probar y ejecutar
+fácilmente en tu computadora.
+
+------------------------------------------------------------------------------
+OPCIÓN 1: EJECUCIÓN RÁPIDA (Recomendada - 1 Solo Clic)
+------------------------------------------------------------------------------
+Si tienes XAMPP instalado en tu computadora:
+
+1. Descomprime esta carpeta en tu Escritorio o donde prefieras.
+2. Haz doble clic en el archivo:
+   👉 iniciar_servidor.bat
+
+¿Qué hace este archivo automáticamente por ti?
+- Enciende MySQL si está apagado.
+- Verifica si la base de datos 'hidromaticos_db' está creada (si no, la crea e inserta los datos de prueba).
+- Inicia el servidor web PHP en el puerto 8000.
+- Abre tu navegador automáticamente en: http://localhost:8000/index.php
+
+
+------------------------------------------------------------------------------
+OPCIÓN 2: MÉTODO TRADICIONAL CON XAMPP / phpMyAdmin
+------------------------------------------------------------------------------
+Si prefieres hacerlo de la manera tradicional con Apache y phpMyAdmin:
+
+1. Copia la carpeta "hidromaticos" dentro de la carpeta "htdocs" de tu XAMPP:
+   Ruta típica: C:\xampp\htdocs\hidromaticos
+
+2. Abre XAMPP Control Panel y haz clic en "Start" en:
+   - Apache
+   - MySQL
+
+3. Abre tu navegador e ingresa a phpMyAdmin:
+   http://localhost/phpmyadmin
+
+4. Ve a la pestaña "Importar":
+   - Haz clic en "Seleccionar archivo" (Choose File).
+   - Elige el archivo: hidromaticos_db_completo.sql
+   - Baja y haz clic en "Continuar" / "Importar".
+   (¡Listo! El script crea la base de datos 'hidromaticos_db', todas las tablas y datos de prueba).
+
+5. Abre el sistema en tu navegador:
+   http://localhost/hidromaticos/index.php
+
+
+------------------------------------------------------------------------------
+¿CÓMO PROBAR EL SISTEMA DURANTE LA EVALUACIÓN O DEMO?
+------------------------------------------------------------------------------
+
+1. PANEL DEL VENDEDOR / PUNTO DE VENTA (index.php):
+   - En el cuadro de búsqueda por código, escribe o copia uno de estos códigos de repuestos reales:
+     * KIT-4L60E   (Master Kit 4L60E - Chevrolet Silverado)
+     * SOL-A340E   (Kit Solenoides A340E - Toyota 4Runner)
+     * TURB-TH400  (Turbina TH400 Reforzada)
+     * FLUID-DEX6  (Aceite Dexron VI)
+     * FILT-6F35   (Filtro Caja 6F35 - Ford Fusion)
+     * BOMB-4R70W  (Bomba Aceite 4R70W - Ford F-150)
+   - Presiona Enter o clic en "Agregar a la Orden".
+   - Verás cómo se añade al carrito y puedes cambiar la cantidad.
+   - El sistema calcula el subtotal y total automáticamente con JavaScript.
+   - Selecciona un cliente, el tipo de comprobante y presiona "Registrar y Cobrar Venta".
+   - ¡Aparecerá el comprobante formal con el logo de Alexis Navas listo para imprimir!
+   - El stock se descuenta automáticamente de la base de datos de forma atómica.
+
+2. CATÁLOGO Y GESTIÓN DE INVENTARIO (inventario.php):
+   - Haz clic en "📦 Catálogo de Repuestos" en la barra superior.
+   - Podrás filtrar repuestos en tiempo real con el buscador.
+   - Verás el semáforo de existencias (verde: stock alto, amarillo: bajo, rojo: agotado).
+   - Puedes registrar nuevos repuestos con el botón "➕ Registrar Nueva Pieza" o editarlos.
+
+
+------------------------------------------------------------------------------
+ESTRUCTURA DE ARCHIVOS PARA LA EXPOSICIÓN (Módulos):
+------------------------------------------------------------------------------
+- hidromaticos_db_completo.sql : Script SQL unificado (Tablas InnoDB + Datos).
+- conexion.php                 : Paso 2 - Conexión segura PDO, try-catch y getenv().
+- inventario/                  : Paso 3 - CRUD modular con consultas preparadas (prepare/execute).
+  * RepuestoController.php
+  * api_repuestos.php
+- ventas/                      : Paso 4 - Transacciones ACID (beginTransaction, commit, rollBack)
+  * VentaController.php                   y actualización dinámica de stock con UPDATE.
+  * api_ventas.php
+- clientes/                    : Módulo auxiliar para listar y registrar clientes.
+- assets/                      : Paso 5 - Estilos CSS, logotipo oficial y lógica JS del POS.
+- index.php                    : Vista principal del vendedor (POS).
+- inventario.php               : Vista del catálogo de repuestos.
+==============================================================================
